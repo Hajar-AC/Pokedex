@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 function PokemonEvolution() {
-    const { id } = useParams();  // Récupère l'ID du Pokémon depuis l'URL
+    const { id } = useParams();
     const [evolutionChain, setEvolutionChain] = useState(null);
 
     useEffect(() => {
-        // Premièrement, récupérer les données du Pokémon pour obtenir son évolution_chain url
+        // recuperer les données du pokémon pour obtenir son evolution_chain url
         fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
             .then(response => response.json())
             .then(data => {
@@ -18,12 +18,12 @@ function PokemonEvolution() {
             .catch(error => console.error("Erreur lors de la récupération des évolutions :", error));
     }, [id]);
 
-    // **Fonction de rendu des évolutions**
+
     const renderEvolutions = (chain) => {
         const evolutions = [];
         let current = chain;
 
-        while (current && current.species) {  // Vérifiez que 'species' est défini
+        while (current && current.species) {  
             evolutions.push(current);
             if (current.evolves_to.length > 0) {
                 current = current.evolves_to[0];
@@ -33,7 +33,7 @@ function PokemonEvolution() {
         }
 
         return evolutions.map((evolution, index) => {
-            const pokemonId = evolution.species.url.split('/').filter(Boolean).pop();  // Récupérer l'ID du Pokémon depuis l'URL
+            const pokemonId = evolution.species.url.split('/').filter(Boolean).pop(); 
 
             return (
                 <div key={index} className="p-4 bg-white rounded shadow mb-2">

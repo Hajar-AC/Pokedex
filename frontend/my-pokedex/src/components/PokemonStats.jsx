@@ -7,11 +7,10 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 function PokemonStats() {
-    const { id } = useParams();  // Récupère l'ID du Pokémon depuis l'URL
+    const { id } = useParams();  
     const [stats, setStats] = useState(null);
 
     useEffect(() => {
-        // Récupérer les données du Pokémon pour obtenir ses statistiques
         fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
             .then(response => response.json())
             .then(data => {
@@ -55,7 +54,7 @@ function PokemonStats() {
     return (
         <div className="p-4">
             <h1 className="text-2xl font-bold mb-4">Statistiques de {stats.datasets[0].label}</h1>
-            <div className="w-3/4 mx-auto">  {/* Conteneur pour ajuster la taille du graphique */}
+            <div className="w-3/4 mx-auto"> 
                 <Bar data={stats} options={{ maintainAspectRatio: false }} height={400} />
             </div>
         </div>

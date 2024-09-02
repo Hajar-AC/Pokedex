@@ -15,7 +15,7 @@ def get_pokemons():
 
 @app.route('/api/pokemon/<identifier>', methods=['GET'])
 def get_pokemon(identifier):
-    # Vérifier si l'identifiant est un nombre (ID) ou une chaîne de caractères (nom)
+    # Vérifier un nombre (ID) ou une chaîne de caractères (nom)
     if identifier.isdigit():
         pokemon = Pokemon.query.get_or_404(int(identifier))
     else:

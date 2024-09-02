@@ -19,7 +19,7 @@ def fetch_pokemon_data(identifier):
 
 def populate_db():
     with app.app_context():
-        for pokemon_id in range(1, 151):  # Pour les 150 premiers Pokémon
+        for pokemon_id in range(1, 151):  
             pokemon_data = fetch_pokemon_data(pokemon_id)
             if pokemon_data:
                 pokemon = Pokemon(

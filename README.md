@@ -13,6 +13,7 @@ Le projet Pokedex a été conçu pour fournir une application web interactive pe
   - **Fetch** : Utilisé pour effectuer les requêtes HTTP vers l'API backend.
   - **Tailwind CSS** : Utilisé pour créer rapidement des interfaces réactives avec des classes utilitaires.
   - **CSS Personnalisé** : Utilisé en complément de Tailwind pour des styles spécifiques non couverts par les classes utilitaires.
+  - **Material UI** : Utilisé pour des composants pré-construits et stylisés, facilitant la création d'une interface utilisateur cohérente et professionnelle.
   - **React-Toastify** : Utilisé pour gérer les notifications toast de manière élégante et non intrusive.
   - **Dialogues de Formulaires** : Des dialogues modaux ont été créés pour faciliter l'ajout et l'édition des informations des Pokémon.
 

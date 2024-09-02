@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaEdit, FaTrash } from 'react-icons/fa'; // Importer les icônes
-import EditPokemonForm from './EditPokemonForm';  // Importer le formulaire d'édition
-import CustomDialog from './CustomDialog'; // Importer le composant de dialogue personnalisé
+import { FaEdit, FaTrash } from 'react-icons/fa'; 
+import EditPokemonForm from './EditPokemonForm';  
+import CustomDialog from './CustomDialog'; 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,18 +11,18 @@ function PokemonList() {
     const [pokemons, setPokemons] = useState([]);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [openDialog, setOpenDialog] = useState(false); // État pour gérer l'ouverture du dialogue
+    const [openDialog, setOpenDialog] = useState(false); 
     const [newPokemon, setNewPokemon] = useState({ name: '', type: '', height: '', weight: '' });
     const [editingPokemon, setEditingPokemon] = useState(null);
-    const [expandedPokemonId, setExpandedPokemonId] = useState(null); // État pour gérer l'accordéon
-    const [pokemonToDelete, setPokemonToDelete] = useState(null); // État pour gérer la suppression
+    const [expandedPokemonId, setExpandedPokemonId] = useState(null);
+    const [pokemonToDelete, setPokemonToDelete] = useState(null); 
 
     useEffect(() => {
         fetch('http://127.0.0.1:5000/api/pokemons')
             .then(response => response.json())
             .then(data => {
                 setPokemons(data);
-                setFilteredPokemons(data);  // Initialement, tous les Pokémon sont affichés
+                setFilteredPokemons(data);  // tous les Pokémon sont affichés
             });
     }, []);
 
@@ -37,9 +37,6 @@ function PokemonList() {
             setFilteredPokemons(filtered);
         }
     }, [searchTerm, pokemons]);
-
-    // Declare a global toastId
-let toastId = null;
 
 const handleAddPokemon = (newPokemon) => {
     fetch('http://127.0.0.1:5000/api/pokemon', {
@@ -58,10 +55,10 @@ const handleAddPokemon = (newPokemon) => {
     .then(data => {
         setPokemons([...pokemons, data]);
         setNewPokemon({ name: '', type: '', height: '', weight: '' });
-        setOpenDialog(false); // Fermer le dialogue après l'ajout
+        setOpenDialog(false); // Fermer dialogue ajout
         toast.success("Pokémon added successfully!", {
             onClose: () => {
-                window.location.reload(); // Recharger la page après la fermeture du toast
+                window.location.reload(); // Recharger la page après fermeture toast
             }
         }); 
     })
@@ -79,8 +76,8 @@ const handleAddPokemon = (newPokemon) => {
             .then(response => response.json())
             .then(() => {
                 setPokemons(pokemons.filter(pokemon => pokemon.id !== id));
-                setPokemonToDelete(null); // Fermer le dialogue après suppression
-                toast.success("Pokémon deleted successfully!"); // Afficher le toast de succès
+                setPokemonToDelete(null); // Fermer dialogue après suppression
+                toast.success("Pokémon deleted successfully!"); // Afficher toast succès
             })
             .catch(error => {
                 console.error("Error deleting Pokémon:", error);
@@ -101,11 +98,11 @@ const handleAddPokemon = (newPokemon) => {
     };
 
     return (
-        <div className="p-4 w-full min-h-screen bg-gray-100 dark:bg-gray-900">  {/* Utilisation de la classe dark */}
+        <div className="p-4 w-full min-h-screen bg-gray-100 dark:bg-gray-900">  
             <div className="mb-4 flex justify-between items-center">
                 <input
                     type="text"
-                    className="border rounded p-1 w-full sm:w-1/5 text-sm"  // Réduction supplémentaire de la largeur et de la hauteur
+                    className="border rounded p-1 w-full sm:w-1/5 text-sm" 
                     placeholder="Search by ID or name"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -124,7 +121,7 @@ const handleAddPokemon = (newPokemon) => {
                         key={pokemon.id} 
                         className="relative p-6 bg-white dark:bg-gray-900 text-black dark:text-white rounded shadow-lg dark:shadow-cyan-900 hover:shadow-2xl dark:hover:shadow-cyan-700 transition-transform transform hover:scale-105"
                     >
-                        {/* Icônes Edit et Delete en haut à gauche */}
+                      
                         <div className="absolute top-2 left-2 flex space-x-2">
                             <FaEdit 
                                 onClick={() => setEditingPokemon(pokemon)} 
@@ -206,7 +203,7 @@ const handleAddPokemon = (newPokemon) => {
                     pokemon={editingPokemon}
                     // eslint-disable-next-line no-undef
                     onSave={handleSavePokemon}
-                    onCancel={() => setEditingPokemon(null)}  // Fermer le formulaire
+                    onCancel={() => setEditingPokemon(null)}  // Fermer formulaire
                 />
             )}
         </div>
